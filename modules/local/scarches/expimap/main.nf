@@ -3,6 +3,9 @@ process SCARCHES_EXPIMAP {
     label 'process_medium'
 
     conda "${moduleDir}/environment.yml"
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/scarches:0.6.1--pyh7e72e81_0':
+        'biocontainers/scarches:0.6.1--pyh7e72e81_0' }"
 
     input:
     tuple val(meta), path(h5ad, arity: 1)

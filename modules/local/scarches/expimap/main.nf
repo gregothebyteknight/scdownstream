@@ -3,9 +3,6 @@ process SCARCHES_EXPIMAP {
     label 'process_medium'
 
     conda "${moduleDir}/environment.yml"
-    container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-            ? 'https://wave.seqera.io/view/builds/bd-e532922f69f9a648_1'
-            : 'community.wave.seqera.io/library/pip_scarches:7e8c7e577326f6ad'}"
 
     input:
     tuple val(meta), path(h5ad, arity: 1)
